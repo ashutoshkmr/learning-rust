@@ -1,22 +1,23 @@
+struct User {
+    username: String,
+    email: String,
+    sign_in_count: u64,
+    active: bool,
+}
 fn main() {
-    let s = String::from("Hello");
-    let len = calculate_len(&s[..]);
-    println!("Length of s = {}", len);
-    let len = first_word(&s[..]);
-    println!("Length of first word = {}", len);
+    let mut user1 = build_user(
+        String::from("ashutoshkmr40@gmail.com"),
+        String::from("Ashutosh Kumar"),
+    );
+
+    user1.email = String::from("someemail@example.com");
 }
 
-fn calculate_len(s: &str) -> usize {
-    s.len()
-}
-
-fn first_word(s: &str) -> &str {
-    let bytes = s.as_bytes();
-
-    for (i, &item) in bytes.iter().enumerate() {
-        if item == b' ' {
-            return &s[0..i];
-        }
+fn build_user(email: String, username: String) -> User {
+    User {
+        username,
+        email,
+        sign_in_count: 1,
+        active: true,
     }
-    &s[..]
 }
