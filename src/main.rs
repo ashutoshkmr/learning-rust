@@ -1,46 +1,22 @@
 fn main() {
-    let tup: (i32, i32) = (4, 8);
-
-    let (_x, _y) = tup;
-
-    println!("x = {}, y = {}", tup.0, tup.1);
-
-    let a = [1, 2, 3, 4, 5];
-
-    let first = a[0];
-    let second = a[1];
-
-    println!("first = {}, second = {}", first, second);
-    foo(second);
-
-    let x = five();
-    println!("The value of x is: {}", x);
-
-    if x < 3 {
-        println!("Condition is true");
-    } else {
-        println!("Condition is false");
-    }
-
-    let mut number = if true { 4 } else { 5 };
-
-    println!("The value of number is: {}", number);
-
-    while number != 0 {
-        println!("The value of number is: {}", number);
-        number = number - 1;
-    }
+    let s = String::from("Hello");
+    let len = calculate_len(&s[..]);
+    println!("Length of s = {}", len);
+    let len = first_word(&s[..]);
+    println!("Length of first word = {}", len);
 }
 
-fn foo(x: i32) {
-    let y = {
-        let x = 3;
-        x + 1
-    };
-
-    println!("Foo = {}", x);
-    println!("{}", y)
+fn calculate_len(s: &str) -> usize {
+    s.len()
 }
-fn five() -> i32 {
-    5
+
+fn first_word(s: &str) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+    &s[..]
 }
