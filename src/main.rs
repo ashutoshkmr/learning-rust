@@ -1,3 +1,5 @@
+extern crate communicator;
+
 struct User {
     username: String,
     email: String,
@@ -55,7 +57,9 @@ fn main() {
 
     let amount = Coin::Dime;
 
-    println!("Value in cents for amount is {}",amount.value_incents());
+    println!("Value in cents for amount is {}", amount.value_incents());
+
+    communicator::client::connect();
 }
 
 fn build_user(email: String, username: String) -> User {
